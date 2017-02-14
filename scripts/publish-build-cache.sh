@@ -6,8 +6,8 @@ if [[ $# -lt 1 ]]; then
 fi
 branch=${1-master}
 
-rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress build/downloads yocto-cache@build-cache.asterius.io:/srv/yocto-cache/downloads
+rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress build/downloads yocto-cache@build-cache.asterius.io:/srv/yocto-cache/
 
-rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress build/sstate-cache yocto-cache@build-cache.asterius.io:/srv/yocto-cache/${branch}/sstate-cache
+rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress build/sstate-cache yocto-cache@build-cache.asterius.io:/srv/yocto-cache/${branch}/
 
 exit 0
