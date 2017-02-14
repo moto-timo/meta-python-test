@@ -5,7 +5,7 @@ def machine_builds = [:]
 for (int i = 0; i < targets.size(); i++) {
     def machine = targets.get(i)
 
-    machine_build["$machine"] = {
+    machine_builds["$machine"] = {
         node {
             try {
                 stage("checkout $machine") {
@@ -33,4 +33,4 @@ for (int i = 0; i < targets.size(); i++) {
     }
 }
 
-parallel machine_build
+parallel machine_builds
