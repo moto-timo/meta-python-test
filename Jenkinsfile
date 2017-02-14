@@ -19,6 +19,7 @@ for (int i = 0; i < targets.size(); i++) {
                 }
                 stage("build $machine") {
                     sh "MACHINE=${machine} ./scripts/build.sh"
+                    archiveArtifacts artifacts: 'build/tmp/log/checkpkg.csv', fingerprint: true
                 }
             } catch (e) {
                 echo "Caught: ${e}"
