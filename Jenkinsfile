@@ -19,12 +19,14 @@ for (int i = 0; i < targets.size(); i++) {
                 }
                 stage("build $machine") {
                     sh "MACHINE=${machine} ./scripts/build.sh"
-                    archiveArtifacts artifacts: 'build/tmp/log/checkpkg.csv', fingerprint: true
                 }
             } catch (e) {
                 echo "Caught: ${e}"
                 throw e
             } finally {
+                stage("Archive build artifacts") {
+                    archiveArtifacts allowEmptyArchive: true, artifacts: 'artifacts/**', fingerprint: true
+                }
                 stage("push build cache $machine") {
                     sh "./scripts/publish-build-cache.sh master"
                 }
