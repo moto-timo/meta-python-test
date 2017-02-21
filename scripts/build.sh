@@ -14,6 +14,8 @@ die() {
 rm -f build/conf/bblayers.conf || die "failed to nuke bblayers.conf"
 rm -f build/conf/local.conf || die "failed to nuke local.conf"
 
-./scripts/containerize.sh bitbake ${BUILD_TARGETS} -c checkpkg
+mkdir -p artifacts
+
+./scripts/containerize.sh "bitbake ${BUILD_TARGETS} -c checkpkg && cp tmp/log/checkpkg.csv ../artifacts/python-packages-checkpkg.csv"
 ./scripts/containerize.sh bitbake -k ${BUILD_TARGETS} || die "failed to build"
 
