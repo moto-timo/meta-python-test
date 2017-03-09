@@ -1,3 +1,13 @@
+properties(
+    [
+        [
+            $class: 'BuildDiscarderProperty',
+            strategy: [$class: 'LogRotator', numToKeepStr: '5']
+        ],
+        pipelineTriggers([cron('@hourly')]),
+    ]
+)
+
 def targets = [ 'qemux86-64' ]
 
 def machine_builds = [:]
